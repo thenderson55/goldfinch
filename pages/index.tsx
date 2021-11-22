@@ -1,6 +1,7 @@
 import { GetStaticProps, NextPage } from "next";
 import Head from "next/head";
 import Image from "next/Image";
+import imageLoader from "../imageLoader";
 import { Character, GetCharacterResults } from "../types";
 import styles from "./index.module.scss";
 
@@ -10,12 +11,14 @@ const Home: NextPage<{ characters: Character[] }> = ({ characters }) => (
       <title>Create Next App</title>
       <link rel="icon" href="/favicon.ico" />
     </Head>
-    <h1>The value of customKey is: {process.env.customKey}</h1>
+    <h1>The value of customK is: {process.env.customKey}</h1>
     {characters.map((character) => {
       return (
         <div key={character.id}>
           <li>{character.name}</li>;
           <Image
+            loader={imageLoader}
+            unoptimized
             src={character.image}
             alt={character.name}
             width="200"
