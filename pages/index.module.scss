@@ -1,3 +1,6 @@
+@import "../styles/mixins";
+$color-primary: blueviolet;
+
 .container {
   min-height: 100vh;
   padding: 0 0.5rem;
@@ -8,7 +11,7 @@
 }
 
 .title a {
-  color: #0070f3;
+  color: $color-primary;
   text-decoration: none;
 }
 
@@ -35,6 +38,11 @@
 }
 
 .grid {
+  @include desktop() {
+    width: 100%;
+    flex-direction: column;
+  }
+
   display: flex;
   align-items: center;
   justify-content: center;
@@ -59,8 +67,8 @@
 .card:hover,
 .card:focus,
 .card:active {
-  color: #0070f3;
-  border-color: #0070f3;
+  color: $color-primary;
+  border-color: $color-primary;
 }
 
 .card h3 {
@@ -74,9 +82,9 @@
   line-height: 1.5;
 }
 
-@media (max-width: 600px) {
-  .grid {
-    width: 100%;
-    flex-direction: column;
-  }
-}
+// @media (max-width: 600px) {
+//   .grid {
+//     width: 100%;
+//     flex-direction: column;
+//   }
+// }
