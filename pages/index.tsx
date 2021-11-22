@@ -1,5 +1,5 @@
-import Head from 'next/head'
-import styles from './index.module.css'
+import Head from "next/head";
+import styles from "./index.module.css";
 
 const Home = () => (
   <div className={styles.container}>
@@ -10,7 +10,7 @@ const Home = () => (
 
     <main>
       <h1 className={styles.title}>
-        Welcome to <a href="https://nextjs.org">Next.js!</a>
+        Welcome <a href="https://nextjs.org">Next.js!</a>
       </h1>
 
       <p className={styles.description}>
@@ -43,6 +43,6 @@ const Home = () => (
       </div>
     </main>
   </div>
-)
+);
 
-export default Home
+export default Home;
