@@ -9,6 +9,7 @@ import styles from "./index.module.scss";
 const Home: NextPage<{ characters: Character[] }> = ({ characters }) => (
   <div className={styles.container}>
     <h1>The value of customKey is: {process.env.customKey}</h1>
+    PUBLIC ENV: {process.env.NEXT_PUBLIC_DB_CONNECTION}
     {characters.map((character) => {
       return (
         <div key={character.id}>
