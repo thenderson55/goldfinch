@@ -12,6 +12,20 @@ const Home: NextPage<{ characters: Character[] }> = ({ characters }) => (
     PUBLIC ENV: {process.env.NEXT_PUBLIC_DB_CONNECTION}
     <Link
       href={`
+            /users
+          `}
+    >
+      USERS
+    </Link>
+    <Link
+      href={`
+            /posts
+          `}
+    >
+      POSTS
+    </Link>
+    <Link
+      href={`
             /products
           `}
     >
