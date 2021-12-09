@@ -34,7 +34,6 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   );
 
   const character = await res.json();
-  console.log("CHARACTER", character);
   return {
     props: {
       character,
