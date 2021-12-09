@@ -1,8 +1,38 @@
 {
   "dashboard": {
     "name": "tommy",
-    "likes": 100
+    "likes": 10
   },
+  "events": [
+    {
+      "id": 1,
+      "title": "Event 1",
+      "description": "Description 1",
+      "category": "sports",
+      "date": "April 1st"
+    },
+    {
+      "id": 2,
+      "title": "Event 2",
+      "description": "Description 2",
+      "category": "entertainment",
+      "date": "January 1st"
+    },
+    {
+      "id": 3,
+      "title": "Event 3",
+      "description": "Description 3",
+      "category": "politics",
+      "date": "May 1st"
+    },
+    {
+      "id": 4,
+      "title": "Event 4",
+      "description": "Description 4",
+      "category": "sports",
+      "date": "November 1st"
+    }
+  ],
   "news": [
     {
       "id": 1,
@@ -26,36 +56,6 @@
       "id": 4,
       "title": "Article 4",
       "description": "Description 4",
-      "category": "sports"
-    }
-  ],
-  "products": [
-    {
-      "id": 1,
-      "title": "json-server",
-      "author": "typicode",
-      "description": "Description 1",
-      "category": "sports"
-    },
-    {
-      "id": 1,
-      "title": "json-server",
-      "author": "typicode",
-      "description": "Description 1",
-      "category": "sports"
-    },
-    {
-      "id": 1,
-      "title": "json-server",
-      "author": "typicode",
-      "description": "Description 1",
-      "category": "sports"
-    },
-    {
-      "id": 1,
-      "title": "json-server",
-      "author": "typicode",
-      "description": "Description 1",
       "category": "sports"
     }
   ]
