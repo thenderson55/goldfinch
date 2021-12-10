@@ -5,6 +5,8 @@ import { GetServerSideProps } from "next";
 import { useRouter } from "next/router";
 import Layout from "../../components/Layout";
 import styles from "../../styles/Character.module.css";
+import Header from "../../components/Layout/Header";
+import Footer from "../../components/Layout/Footer";
 
 function CharacterPage({ character }) {
   const router = useRouter();
@@ -25,7 +27,13 @@ function CharacterPage({ character }) {
 }
 
 CharacterPage.getLayout = function getLayout(page: typeof CharacterPage) {
-  return <Layout>{page}</Layout>;
+  return (
+    <div>
+      <Header />
+      {page}
+      <Footer />
+    </div>
+  );
 };
 
 export const getServerSideProps: GetServerSideProps = async (context) => {

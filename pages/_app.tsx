@@ -1,7 +1,8 @@
 import { NextPage } from "next";
 import { AppProps } from "next/dist/shared/lib/router/router";
-import { Component, ReactElement, ReactNode } from "react";
-import Layout from "../components/Layout";
+import Head from "next/head";
+import React, { Component, ReactElement, ReactNode } from "react";
+import Layout from "../components/Layout/Layout";
 import "../styles/global.css";
 
 // This default export is required in a new `pages/_app.js` file.
@@ -14,6 +15,21 @@ type AppPropsWithLayout = AppProps & {
 };
 
 export default function MyApp({ Component, pageProps }: AppPropsWithLayout) {
-  const getLayout = Component.getLayout ?? ((page) => page);
-  return getLayout(<Component {...pageProps} />);
+  // const getLayout = Component.getLayout ?? ((page) => page);
+
+  if (Component.getLayout) {
+    return Component.getLayout(<Component {...pageProps} />);
+  }
+
+  return (
+    <>
+      <Head>
+        <title>Goldfinch</title>
+        <meta name="description" content="inventory management" />
+      </Head>
+      <Layout>
+        <Component {...pageProps} />
+      </Layout>
+    </>
+  );
 }
