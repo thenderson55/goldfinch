@@ -10,8 +10,13 @@ function Navbar() {
       <h1 className={styles.logo}>
         <a href="#">NextAuth</a>
       </h1>
-      <ul className={styles.mainNav && styles.loaded}>
-        {/* <ul className={`styles.main-nav ${!session && loading ? "loading" : "loaded"}`}> */}
+      {/* <ul className={styles.mainNav && styles.loaded}> */}
+      <ul
+        className={
+          styles.mainNav &&
+          (!session && status == "loading" ? styles.loading : styles.loaded)
+        }
+      >
         <li>
           <Link href="/">
             <a>Home</a>
@@ -33,8 +38,8 @@ function Navbar() {
               <a
                 onClick={(e) => {
                   e.preventDefault();
-                  signIn();
-                  // signIn("github");
+                  // signIn();
+                  signIn("github");
                 }}
               >
                 Sign In
