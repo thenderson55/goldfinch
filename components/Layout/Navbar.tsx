@@ -1,10 +1,10 @@
 import Link from "next/link";
-// import { signIn, signOut, useSession } from "next-auth/client";
+import { signIn, signOut, useSession } from "next-auth/react";
 // import "./Navbar.css";
 import styles from "./Navbar.module.scss";
 
 function Navbar() {
-  // const [session, loading] = useSession();
+  const { data: session, status } = useSession();
   return (
     <nav className={styles.header}>
       <h1 className={styles.logo}>
@@ -27,6 +27,35 @@ function Navbar() {
             <a>Blog</a>
           </Link>
         </li>
+        {status !== "loading" && !session && (
+          <li>
+            <Link href="/api/auth/signin">
+              <a
+                onClick={(e) => {
+                  e.preventDefault();
+                  signIn();
+                  // signIn("github");
+                }}
+              >
+                Sign In
+              </a>
+            </Link>
+          </li>
+        )}
+        {session && (
+          <li>
+            <Link href="/api/auth/signout">
+              <a
+                onClick={(e) => {
+                  e.preventDefault();
+                  signOut();
+                }}
+              >
+                Sign Out
+              </a>
+            </Link>
+          </li>
+        )}
       </ul>
     </nav>
   );

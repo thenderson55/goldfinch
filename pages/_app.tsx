@@ -1,4 +1,5 @@
 import { NextPage } from "next";
+import { SessionProvider, signIn, useSession } from "next-auth/react";
 import { AppProps } from "next/dist/shared/lib/router/router";
 import Head from "next/head";
 import React, { Component, ReactElement, ReactNode } from "react";
@@ -10,13 +11,17 @@ import "../styles/global.css";
 // This default export is required in a new `pages/_app.js` file.
 type NextpageWithLayout = NextPage & {
   getLayout?: (page: ReactElement) => ReactNode;
+  auth: string;
 };
 
 type AppPropsWithLayout = AppProps & {
   Component: NextpageWithLayout;
 };
 
-export default function MyApp({ Component, pageProps }: AppPropsWithLayout) {
+export default function MyApp({
+  Component,
+  pageProps: { session, ...pageProps },
+}: AppPropsWithLayout) {
   // const getLayout = Component.getLayout ?? ((page) => page);
 
   if (Component.getLayout) {
@@ -24,15 +29,47 @@ export default function MyApp({ Component, pageProps }: AppPropsWithLayout) {
   }
 
   return (
-    <>
-      <Head>
-        <title>Goldfinch</title>
-        <meta name="description" content="inventory management" />
-      </Head>
-      <Navbar />
-      <Layout>
-        <Component {...pageProps} />
-      </Layout>
-    </>
+    <SessionProvider session={session}>
+      {Component.auth ? (
+        <Auth>
+          <Head>
+            <title>Goldfinch</title>
+            <meta name="description" content="inventory management" />
+          </Head>
+          <Navbar />
+          <Layout>
+            <Component {...pageProps} />
+          </Layout>
+        </Auth>
+      ) : (
+        <>
+          <Head>
+            <title>Goldfinch</title>
+            <meta name="description" content="inventory management" />
+          </Head>
+          <Navbar />
+          <Layout>
+            <Component {...pageProps} />
+          </Layout>
+        </>
+      )}
+    </SessionProvider>
   );
+}
+
+function Auth({ children }) {
+  const { data: session, status } = useSession();
+  const isUser = !!session?.user;
+  React.useEffect(() => {
+    if (status === "loading") return; // Do nothing while loading
+    // if (!isUser) signIn(); // If not authenticated, force log in
+  }, [isUser, status]);
+
+  if (isUser) {
+    return children;
+  }
+
+  // Session is being fetched, or no user.
+  // If no user, useEffect() will redirect.
+  return <div>Loading...</div>;
 }
