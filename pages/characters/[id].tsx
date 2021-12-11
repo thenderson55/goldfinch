@@ -3,7 +3,7 @@ import Image from "next/Image";
 
 import { GetServerSideProps } from "next";
 import { useRouter } from "next/router";
-import Layout from "../../components/Layout";
+// import Layout from "../../components/Layout";
 import styles from "../../styles/Character.module.css";
 import Header from "../../components/Layout/Header";
 import Footer from "../../components/Layout/Footer";
