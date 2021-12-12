@@ -2,7 +2,9 @@ import NextAuth from "next-auth/next";
 import FacebookProvider from "next-auth/providers/facebook";
 // import EmailProvider from "next-auth/providers/email";
 import GithubProvider from "next-auth/providers/github";
-import Auth0Provider from "next-auth/providers/auth0";
+// import Auth0Provider from "next-auth/providers/auth0";
+import { MongoDBAdapter } from "@next-auth/mongodb-adapter";
+import clientPromise from "../../../lib/mongodb";
 
 export default NextAuth({
   providers: [
@@ -28,4 +30,11 @@ export default NextAuth({
     //   domain: process.env.AUTH0_DOMAIN,
     // }),
   ],
+  adapter: MongoDBAdapter(clientPromise),
+  session: {
+    strategy: "jwt",
+  },
+  jwt: {
+    secret: "nfoiwuebhfo3w",
+  },
 });
