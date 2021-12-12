@@ -4,7 +4,7 @@ import FacebookProvider from "next-auth/providers/facebook";
 import GithubProvider from "next-auth/providers/github";
 // import Auth0Provider from "next-auth/providers/auth0";
 import { MongoDBAdapter } from "@next-auth/mongodb-adapter";
-import clientPromise from "../../../lib/mongodb";
+import { clientPromise } from "../../../lib/mongodb";
 
 export default NextAuth({
   providers: [
