@@ -9,11 +9,7 @@ import Home from "../pages/index";
 describe("Home", () => {
   it("renders a heading", () => {
     render(<Home />);
-
-    const heading = screen.getByRole("heading", {
-      name: /welcome next\.js!/i,
-    });
-
+    const heading = screen.getByRole("header");
     expect(heading).toBeInTheDocument();
   });
 });

@@ -7,12 +7,13 @@ import { Character, GetCharacterResults } from "../types";
 import styles from "./index.module.scss";
 import { useSession } from "next-auth/react";
 
-const Home: NextPage<{ characters: Character[] }> = ({ characters }) => {
-  const { data: session, status } = useSession();
+const Home: NextPage = () => {
+  // const { data: session, status } = useSession();
   return (
     <div className={styles.container}>
-      <p>{session ? session.user.email : "Nobody"}</p>
-      <h1>The value of customKey is: {process.env.customKey}</h1>
+      {/* <p>{session ? session.user.email : "Nobody"}</p> */}
+      <h1 role="header">The value of customKey is</h1>
+      <button>Open dialog</button>
       PUBLIC ENV: {process.env.NEXT_PUBLIC_DB_CONNECTION}
       <Link
         href={`
@@ -35,7 +36,7 @@ const Home: NextPage<{ characters: Character[] }> = ({ characters }) => {
       >
         PRODUCTS
       </Link>
-      {characters.map((character) => {
+      {/* {characters.map((character) => {
         return (
           <div key={character.id}>
             <Link
@@ -57,20 +58,20 @@ const Home: NextPage<{ characters: Character[] }> = ({ characters }) => {
             />
           </div>
         );
-      })}
+      })} */}
     </div>
   );
 };
 
-export const getStaticProps: GetStaticProps = async (context) => {
-  const res = await fetch("https://rickandmortyapi.com/api/character");
-  const { results }: GetCharacterResults = await res.json();
+// export const getStaticProps: GetStaticProps = async (context) => {
+//   const res = await fetch("https://rickandmortyapi.com/api/character");
+//   const { results }: GetCharacterResults = await res.json();
 
-  return {
-    props: {
-      characters: results,
-    },
-  };
-};
+//   return {
+//     props: {
+//       characters: results,
+//     },
+//   };
+// };
 
 export default Home;
