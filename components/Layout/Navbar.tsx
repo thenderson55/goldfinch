@@ -5,6 +5,7 @@ import styles from "./Navbar.module.scss";
 
 function Navbar() {
   const { data: session, status } = useSession();
+  console.log({ session, status });
   return (
     <nav className={styles.header}>
       <h1 className={styles.logo}>
@@ -38,8 +39,8 @@ function Navbar() {
               <a
                 onClick={(e) => {
                   e.preventDefault();
-                  // signIn();
-                  signIn("github");
+                  signIn();
+                  // signIn("github");
                 }}
               >
                 Sign In

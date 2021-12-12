@@ -1,8 +1,8 @@
 import { NextPage } from "next";
-import { SessionProvider, signIn, useSession } from "next-auth/react";
+import { SessionProvider } from "next-auth/react";
 import { AppProps } from "next/dist/shared/lib/router/router";
 import Head from "next/head";
-import React, { Component, ReactElement, ReactNode } from "react";
+import React, { ReactElement, ReactNode } from "react";
 import Layout from "../components/Layout/Layout";
 import Navbar from "../components/Layout/Navbar";
 import "../styles/global.css";
@@ -30,46 +30,31 @@ export default function MyApp({
 
   return (
     <SessionProvider session={session}>
-      {Component.auth ? (
-        <Auth>
-          <Head>
-            <title>Goldfinch</title>
-            <meta name="description" content="inventory management" />
-          </Head>
-          <Navbar />
-          <Layout>
-            <Component {...pageProps} />
-          </Layout>
-        </Auth>
-      ) : (
-        <>
-          <Head>
-            <title>Goldfinch</title>
-            <meta name="description" content="inventory management" />
-          </Head>
-          <Navbar />
-          <Layout>
-            <Component {...pageProps} />
-          </Layout>
-        </>
-      )}
+      <Head>
+        <title>Goldfinch Authed</title>
+        <meta name="description" content="inventory management" />
+      </Head>
+      <Navbar />
+      <Layout>
+        <Component {...pageProps} />
+      </Layout>
     </SessionProvider>
   );
 }
 
-function Auth({ children }) {
-  const { data: session, status } = useSession();
-  const isUser = !!session?.user;
-  React.useEffect(() => {
-    if (status === "loading") return; // Do nothing while loading
-    // if (!isUser) signIn(); // If not authenticated, force log in
-  }, [isUser, status]);
+// function Auth({ children }) {
+//   const { data: session, status } = useSession();
+//   const isUser = !!session?.user;
+//   React.useEffect(() => {
+//     if (status === "loading") return; // Do nothing while loading
+//     // if (!isUser) signIn(); // If not authenticated, force log in
+//   }, [isUser, status]);
 
-  if (isUser) {
-    return children;
-  }
+//   if (isUser) {
+//     return children;
+//   }
 
-  // Session is being fetched, or no user.
-  // If no user, useEffect() will redirect.
-  return <div>Loading...</div>;
-}
+//   // Session is being fetched, or no user.
+//   // If no user, useEffect() will redirect.
+//   return <div>Loading...</div>;
+// }

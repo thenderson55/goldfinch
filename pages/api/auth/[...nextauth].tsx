@@ -1,5 +1,4 @@
 import NextAuth from "next-auth/next";
-import Providers from "next-auth/providers";
 import FacebookProvider from "next-auth/providers/facebook";
 // import EmailProvider from "next-auth/providers/email";
 import GithubProvider from "next-auth/providers/github";
@@ -22,11 +21,11 @@ export default NextAuth({
       // @ts-ignore
       scope: "read:user",
     }),
-    Auth0Provider({
-      clientId: process.env.AUTH0_ID,
-      clientSecret: process.env.AUTH0_SECRET,
-      // @ts-ignore
-      domain: process.env.AUTH0_DOMAIN,
-    }),
+    // Auth0Provider({
+    //   clientId: process.env.AUTH0_ID,
+    //   clientSecret: process.env.AUTH0_SECRET,
+    //   // @ts-ignore
+    //   domain: process.env.AUTH0_DOMAIN,
+    // }),
   ],
 });
